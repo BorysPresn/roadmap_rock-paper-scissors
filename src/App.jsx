@@ -7,7 +7,7 @@ import GameScreen from './components/GameScreen'
 function App() {
   
   return (
-    <HashRouter basename="/roadmap_rock-paper-scissors/">
+    <HashRouter basename="/roadmap_rock-paper-scissors">
       <ThemeSwitcher />
       <Routes>
         <Route path='/' element={<StartScreen />} />
