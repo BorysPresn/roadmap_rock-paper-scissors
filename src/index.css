@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Play:wght@400;700&display=swap');
+
+@import "tailwindcss";
+@tailwind utilities;
+
+:root {
+  --bg-color: #D9D9D9;
+  --text-color: #070A52;
+  --text-secondary-color: #000000;
+  --text-winner-color: #AF2D2D;
+  --btn-bg-color: #DF2E38;
+  --btn-text-color: #FFFFFF;
+  --svg-fill-color: #000000;
+}
+
+.dark {
+  --bg-color: #353535;
+  --text-color: #BEBFD1;
+  --btn-bg-color: #2751A3;
+  --text-secondary-color: #ffffff;
+  --text-winner-color: #6881D8;
+  --svg-fill-color: #FFFFFF;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: 'Inter', sans-serif;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+  font-size: 14px;
+}
+
+.theme-switcher {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  width: 96px;
+  height: 96px;
+  background-size: 76px 76px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  cursor: pointer;
+}
+
+.theme-switcher--light {
+  background-image: url('./assets/dark.svg');
+}
+
+.theme-switcher--dark {
+  background-image: url('./assets/light.svg');
+}
+
+@layer utilities {
+  .btn {
+    @apply font-bold;
+    color: var(--btn-text-color);
+    height: 90px;
+    width: 170px;
+    background-color: var(--btn-bg-color);
+    font-size: 27px;
+    line-height: 100%;
+    text-transform: uppercase;
+    border-radius: 14px;
+    cursor: pointer;
+  }
+  .header{
+    @apply capitalize text-4xl text-left font-bold;
+    max-width: 378px;
+  }
+  .container{
+    @apply flex justify-start items-center w-screen gap-8 h-screen mx-auto;
+    max-width: 578px;
+  }
+  .choice-btn{
+    font-size: 25px;
+    max-height: 60px;
+  }
+  .game-screen {
+    @apply  flex flex-col justify-center items-center gap-8;
+    height: 100%;
+    max-width: 621px;
+  }
+  .game-screen__header {
+    font-size: 30px;
+    color: var(--text-color);
+    font-weight: bold;
+  }
+  .game-screen__score {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 16px;
+    font-weight: 600;
+    color: var(--text-secondary-color);
+  }
+  .reset-score {
+    width: 100%;
+    font-weight: bold;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  .game-screen__winner {
+    @apply font-bold uppercase;
+    font-size: 40px;
+    color: var(--text-winner-color);
+  }
+  .game-screen__winner--hidden,
+  .game-screen__choices--hidden {
+    visibility: hidden;
+  }
+  .game-screen__choices {
+    @apply flex justify-center items-center gap-14.5;
+  }
+  .computer-choice {
+    transform: scaleX(-1);
+  }
+  .btn-wrapper{
+    @apply flex gap-11;
+  }
+  .btn-wrapper--no-events{
+    pointer-events: none;
+  }
+  .animated {
+    animation: shaking 1s linear;
+  }
+  @keyframes shaking {
+    0%, 33%, 67%, 100% {
+      transform: translateY(0);
+    }
+    16%, 50%, 84% {
+      transform: translateY(-15px);
+    }
+  } 
+}
+
