@@ -4,12 +4,10 @@ import StartScreen from './components/StartScreen'
 import ThemeSwitcher from './components/ThemeSwitcher'
 import GameScreen from './components/GameScreen'
 
-
-
 function App() {
   
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/roadmap_rock-paper-scissors/">
       <ThemeSwitcher />
       <Routes>
         <Route path='/' element={<StartScreen />} />
