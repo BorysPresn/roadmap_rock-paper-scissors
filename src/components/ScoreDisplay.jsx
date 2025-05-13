@@ -1,15 +1,18 @@
-import React from 'react';
 
-const ScoreDisplay = ({playerScore, computerScore, onReset}) => {
+const ScoreDisplay = ({ playerScore, computerScore, onReset }) => {
     return (
-        <div className="game-screen__score uppercase">
-            <div className="reset-score w-[100%]" onClick={onReset}>
+        <div
+            className="uppercase flex flex-wrap justify-between gap-4 font-[600]"
+            style={{ color: 'var(--text-secondary-color)' }}>
+            <div
+                className="w-[100%] font-bold text-[20px] cursor-pointer"
+                onClick={onReset}>
                 reset the score
             </div>
-            <div className="player-score">Player score: {playerScore}</div>
-            <div className="computer-score">Computer score: {computerScore}</div>
+            <div>Player score: {playerScore}</div>
+            <div>Computer score: {computerScore}</div>
         </div>
     );
-}
+};
 
 export default ScoreDisplay;

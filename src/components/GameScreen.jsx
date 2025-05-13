@@ -10,6 +10,7 @@ import { Link } from 'react-router-dom';
 const GameScreen = () => {
     const [isAnimating, setIsAnimating] = useState(false);
     const dispatch = useDispatch();
+    const animationDelay = 990;
 
     const gameState = useSelector(
         (state) => ({
@@ -22,7 +23,7 @@ const GameScreen = () => {
         shallowEqual
     );
 
-    const winnerClasses = `game-screen__winner ${isAnimating || !gameState.winner ? 'game-screen__winner--hidden' : ''}`;
+    const winnerClasses = `font-bold uppercase text-[40px] ${isAnimating || !gameState.winner ? 'visualy-hidden' : ''}`;
 
     const handlePlayerChoice = (choice) => {
         dispatch(roundResult(null, null));
@@ -35,27 +36,31 @@ const GameScreen = () => {
             const winner = getWinner(choice, computerChoice);
             dispatch(roundResult(winner, computerChoice));
             setIsAnimating(false);
-        }, 990);
+        }, animationDelay);
     };
     const resetGameState = () => {
         dispatch(resetScore());
     };
     return (
-        <div className="game-screen">
-            <h2 className="game-screen__header capitalize ">Rock Paper Scissors</h2>
+        <div className="flex flex-col justify-center items-center gap-8 h-[100%] max-w-[621px]">
+            <h2 className="capitalize text-[30px] font-bold" style={{ color: 'var(--text-color)' }}>
+                Rock Paper Scissors
+            </h2>
             <ScoreDisplay
                 playerScore={gameState.playerScore}
                 computerScore={gameState.computerScore}
                 onReset={resetGameState}
             />
-            <h2 className={winnerClasses}>{gameState.winner} WON!🎉</h2>
+            <h2 className={winnerClasses} style={{ color: 'var(--text-winner-color)' }}>
+                {gameState.winner} WON!🎉
+            </h2>
             <DisplayChoices
                 compChoice={gameState.computerChoice}
                 playerChoice={gameState.playerChoice}
                 isAnimating={isAnimating}
             />
             <PlayerControls onPlayerChoice={handlePlayerChoice} isAnimating={isAnimating} />
-            <Link to='/'>Back to Start Screen</Link>
+            <Link to="/">Back to Start Screen</Link>
         </div>
     );
 };
