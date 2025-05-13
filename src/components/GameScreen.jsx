@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { playerChoice, resetScore, roundResult } from '../actions/actions';
 import { getComputerChoice, getWinner } from '../utils/utils';
@@ -23,7 +23,7 @@ const GameScreen = () => {
         shallowEqual
     );
 
-    const winnerClasses = `font-bold uppercase text-[40px] ${isAnimating || !gameState.winner ? 'visualy-hidden' : ''}`;
+    const winnerClasses = `font-bold uppercase text-[40px] text-[var(--text-winner-color)] ${isAnimating || !gameState.winner ? 'visualy-hidden' : ''}`;
 
     const handlePlayerChoice = (choice) => {
         dispatch(roundResult(null, null));
@@ -43,7 +43,7 @@ const GameScreen = () => {
     };
     return (
         <div className="flex flex-col justify-center items-center gap-8 h-[100%] max-w-[621px]">
-            <h2 className="capitalize text-[30px] font-bold" style={{ color: 'var(--text-color)' }}>
+            <h2 className="capitalize text-[30px] font-bold text-[var(--text-color)]">
                 Rock Paper Scissors
             </h2>
             <ScoreDisplay
@@ -51,9 +51,7 @@ const GameScreen = () => {
                 computerScore={gameState.computerScore}
                 onReset={resetGameState}
             />
-            <h2 className={winnerClasses} style={{ color: 'var(--text-winner-color)' }}>
-                {gameState.winner} WON!🎉
-            </h2>
+            <h2 className={winnerClasses}>{gameState.winner} WON!🎉</h2>
             <DisplayChoices
                 compChoice={gameState.computerChoice}
                 playerChoice={gameState.playerChoice}

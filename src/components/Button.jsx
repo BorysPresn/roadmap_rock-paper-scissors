@@ -5,8 +5,7 @@ const Button = ({ children, size = 'normal', ...restProps }) => {
     };
     return (
         <button
-            className={`font-bold uppercase rounded-[14px] leading-[100%] cursor-pointer w-[170px] ${sizeClasses[size]}`}
-            style={{ color: 'var(--btn-text-color)', backgroundColor: 'var(--btn-bg-color)' }}
+            className={`font-bold uppercase rounded-[14px] leading-[100%] cursor-pointer w-[170px] bg-[var(--btn-bg-color)] text-[var(--btn-text-color)] ${sizeClasses[size]}`}
             {...restProps}>
             {children}
         </button>
